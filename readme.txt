@@ -3,8 +3,8 @@ Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/affiliate/
 Tags: ads, advertising, affiliate, affiliate marketing, affiliate plugin, affiliate tool, affiliates, amazon, auto, automatic, banner, banners, bucks, contact form, crm, earn money, e-commerce, hover, itthinx, keyword, lead, link, linker, marketing, money, online sale, order, partner, referral, referral links, referrer, shopping cart, sales, site, track, transaction, wordpress, contact form, contact form 7, digital downloads, eshop, jigoshop, magento, paypal, stripe, woocommerce, woothemes, wp e-commerce
 Requires at least: 3.5.1
-Tested up to: 3.8.2
-Stable tag: 1.0.0
+Tested up to: 3.9
+Stable tag: 1.0.1
 License: GPLv3
 
 The Affiliate plugin is a toolbox for Affiliate Marketers.
@@ -71,10 +71,16 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 
 == Changelog ==
 
+= 1.0.1 =
+* WordPress 3.9 compatibility checked
+
 = 1.0.0 =
 Initial release.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+* WordPress 3.9 compatibility checked
 
 = 1.0.0 =
 Initial release, there is no need to upgrade yet.
