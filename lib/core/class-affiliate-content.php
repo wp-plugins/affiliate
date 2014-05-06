@@ -63,39 +63,9 @@ class Affiliate_Content {
 	 * @return string transformed content
 	 */
 	public static function transform( &$content, &$post ) {
-
-		$keywords = get_posts( array(
-			'numberposts' => -1,
-			'post_type'   => 'affiliate_keyword',
-			'meta_key'    => 'enabled',
-			'meta_value'  => 'yes'
-		) );
-		foreach( $keywords as $keyword ) {
-			$url = get_post_meta( $keyword->ID, 'url', true );
-			if ( !empty( $url ) ) {
-				$search = $keyword->post_title;
-				$match_case = get_post_meta( $keyword->ID, 'match_case', true ) == 'yes';
-				if ( $match_case ) {
-					$case = '';
-				} else {
-					$case = 'i';
-				}
-				if ( function_exists( 'mb_ereg_replace' ) ) {
-					$content = mb_ereg_replace(
-						'\b' . $search . '\b',
-						sprintf( '<a href="%s">\\0</a>', esc_attr( $url ) ),
-						$content,
-						"msr$case"
-					);
-				} else {
-					$content = preg_replace(
-						'/\b' . $search . '\b/' . $case,
-						sprintf( '<a href="%s">$0</a>', esc_attr( $url ) ),
-						$content
-					);
-				}
-			}
-		}
+		require_once AFFILIATE_CORE_LIB . '/class-affiliate-content-builder.php';
+		$builder = new Affiliate_Content_Builder( $content );
+		$content = $builder->get_content();
 		return $content;
 	}
 }
