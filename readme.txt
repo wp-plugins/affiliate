@@ -71,6 +71,9 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 
 == Changelog ==
 
+= 1.1.0 =
+* Improved the keyword replacement algorithm, using a parser to make correct replacements.
+
 = 1.0.1 =
 * WordPress 3.9 compatibility checked
 
@@ -78,6 +81,9 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 Initial release.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+* Using a better and much more sound keyword replacement algorithm.
 
 = 1.0.1 =
 * WordPress 3.9 compatibility checked
