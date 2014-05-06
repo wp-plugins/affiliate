@@ -73,6 +73,7 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 
 = 1.1.0 =
 * Improved the keyword replacement algorithm, using a parser to make correct replacements.
+* Added excerpt filter.
 
 = 1.0.1 =
 * WordPress 3.9 compatibility checked

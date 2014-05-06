@@ -29,6 +29,12 @@ if ( !defined( 'ABSPATH' ) ) {
 class Affiliate_Content {
 
 	/**
+	 * Filter priority for the_excerpt hook.
+	 * @var int
+	 */
+	const THE_EXCERPT_FILTER_PRIORITY = 99999;
+
+	/**
 	 * Filter priority for the_content hook.
 	 * @var int
 	 */
@@ -38,8 +44,27 @@ class Affiliate_Content {
 	 * Setup.
 	 */
 	public static function init() {
-		// @todo excerpt?
-		add_filter( 'the_content', array(__CLASS__, 'the_content' ), self::THE_CONTENT_FILTER_PRIORITY );
+		// transform excerpts
+		if ( apply_filters( 'affiliate_filter_the_excerpt', true ) ) {
+			add_filter( 'the_excerpt', array(__CLASS__, 'the_excerpt' ), self::THE_EXCERPT_FILTER_PRIORITY );
+		}
+		// transform post contents
+		if ( apply_filters( 'affiliate_filter_the_content', true ) ) {
+			add_filter( 'the_content', array(__CLASS__, 'the_content' ), self::THE_CONTENT_FILTER_PRIORITY );
+		}
+	}
+
+	/**
+	 * Excerpt filter, hooked on the_excerpt, invokes the transformer.
+	 * 
+	 * @param string $content
+	 * @return string filtered content
+	 */
+	public static function the_excerpt( $content ) {
+		if ( $post = get_post() ) {
+			$content = apply_filters( 'affiliate_post_the_excerpt', self::transform( $content, $post ), $post );
+		}
+		return $content;
 	}
 
 	/**
