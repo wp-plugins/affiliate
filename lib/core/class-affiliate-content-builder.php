@@ -47,20 +47,6 @@ class Affiliate_Content_Builder {
 	private $current_keyword = null;
 
 	/**
-	 * Orginal content starts with <p> flag.
-	 * 
-	 * @var boolean
-	 */
-	private $p_starts = false;
-
-	/**
-	 * Original content ends with </p> flag.
-	 * 
-	 * @var boolean
-	 */
-	private $p_ends = false; 
-
-	/**
 	 * Constructor for specific content taking on replacements for
 	 * published keywords.
 	 * 
@@ -68,12 +54,6 @@ class Affiliate_Content_Builder {
 	 */
 	public function __construct( $content ) {
 		$this->content = $content;
-		if ( stripos( $content, '<p>' ) === 0 ) {
-			$this->p_starts = true;
-		}
-		if ( strripos( $content, '</p>' ) === strlen( $content ) - 4 ) {
-			$this->p_ends = true;
-		}
 		$this->keywords = array();
 		$keywords = get_posts( array(
 			'numberposts' => -1,
@@ -128,12 +108,6 @@ class Affiliate_Content_Builder {
 					$close = mb_stripos( $output, $suffix );
 					$output = mb_substr( $output, $open + strlen( $prefix ), $close - $open - strlen( $prefix ) );
 					$this->content = html_entity_decode( $output, ENT_QUOTES, $charset );
-					if ( ( stripos( $this->content, '<p>' ) === 0 ) && !$this->p_starts ) {
-						$this->content = mb_substr( $this->content, 3 );
-					}
-					if ( ( strripos( $this->content, '</p>' ) === strlen( $this->content ) - 4 ) && !$this->p_ends ) {
-						$this->content = mb_substr( $this->content, 0, strlen( $this->content ) - 4 );
-					}
 				}
 			}
 		}
