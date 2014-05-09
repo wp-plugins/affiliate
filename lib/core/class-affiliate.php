@@ -36,9 +36,18 @@ class Affiliate {
 	public static function boot() {
 		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
 		load_plugin_textdomain( AFFILIATE_PLUGIN_DOMAIN, null, AFFILIATE_PLUGIN_NAME . '/lib/core/languages' );
-		require_once AFFILIATE_CORE_LIB . '/class-affiliate-admin.php';
-		require_once AFFILIATE_CORE_LIB . '/class-affiliate-content.php';
-		require_once AFFILIATE_CORE_LIB . '/class-affiliate-keyword.php';
+		if ( function_exists( 'mb_strlen' ) ) {
+			require_once AFFILIATE_CORE_LIB . '/class-affiliate-admin.php';
+			require_once AFFILIATE_CORE_LIB . '/class-affiliate-content.php';
+			require_once AFFILIATE_CORE_LIB . '/class-affiliate-keyword.php';
+		} else {
+			self::$admin_messages[] =
+				'<div class="error">' .
+				__( '<em>Affiliate</em> requires the Multibyte String <a href="http://www.php.net/manual/en/mbstring.installation.php">mbstring</a> PHP extension.', AFFILIATE_PLUGIN_DOMAIN ) .
+				' ' .
+				__( 'Please ask your website administrator to enable this extension.', AFFILIATE_PLUGIN_DOMAIN ) .
+				'</div>';
+		}
 	}
 
 	/**

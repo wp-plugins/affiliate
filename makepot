@@ -1,0 +1,4 @@
+#!/bin/sh
+version=$(awk '/Version\:\ (.+)$/ { print $3 }' affiliate.php)
+find . -iname "*.php" | xargs xgettext --language=PHP --indent --keyword=__ --keyword=_e --keyword=_x:2c,1 --keyword=__ngettext:1,2 --keyword=_n:1,2 -s -n --from-code=UTF-8 -o "languages/affiliate.pot"
+

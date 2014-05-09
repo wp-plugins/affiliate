@@ -3,7 +3,7 @@ Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/affiliate/
 Tags: ads, advertising, affiliate, affiliate marketing, affiliate plugin, affiliate tool, affiliates, amazon, auto, automatic, banner, banners, bucks, contact form, crm, earn money, e-commerce, hover, itthinx, keyword, lead, link, linker, marketing, money, online sale, order, partner, referral, referral links, referrer, shopping cart, sales, site, track, transaction, wordpress, contact form, contact form 7, digital downloads, eshop, jigoshop, magento, paypal, stripe, woocommerce, woothemes, wp e-commerce
 Requires at least: 3.5.1
-Tested up to: 3.9
+Tested up to: 3.9.1
 Stable tag: 1.1.0
 License: GPLv3
 
@@ -71,6 +71,10 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 
 == Changelog ==
 
+= 1.1.1 =
+* Checking if the required Multibyte String PHP extension is enabled.
+* Translation template added.
+
 = 1.1.0 =
 * Improved the keyword replacement algorithm, using a parser to make correct replacements.
 * Added excerpt filter.
@@ -82,6 +86,9 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 Initial release.
 
 == Upgrade Notice ==
+
+= 1.1.1 =
+* Checking if the required Multibyte String PHP extension is enabled, translation template added.
 
 = 1.1.0 =
 * Using a better and much more sound keyword replacement algorithm.
