@@ -183,13 +183,15 @@ class Affiliate_Keyword {
 	 * @param WP_Post $post
 	 */
 	public static function edit_form_after_title( $post ) {
-		echo '<div style="padding:2px 1em 1em 1em;" class="description">';
-		echo __( 'The keyword can be any combination of words and whitespace.', AFFILIATE_PLUGIN_DOMAIN );
-		echo '</div>'; 
-		if ( !function_exists( 'mb_ereg_replace' ) ) {
-			echo '<div style="padding:1em;" class="warning">';
-			echo __( 'Your setup does not support multibyte strings. If you require replacements for a language that requires support for multibyte strings, please ask your web server administrator to <a href="http://www.php.net/manual/en/mbstring.installation.php">install mbstring</a>.', AFFILIATE_PLUGIN_DOMAIN );
-			echo '</div>';
+		if ( $post->post_type == 'affiliate_keyword' ) {
+			echo '<div style="padding:2px 1em 1em 1em;" class="description">';
+			echo __( 'The keyword can be any combination of words and whitespace.', AFFILIATE_PLUGIN_DOMAIN );
+			echo '</div>'; 
+			if ( !function_exists( 'mb_ereg_replace' ) ) {
+				echo '<div style="padding:1em;" class="warning">';
+				echo __( 'Your setup does not support multibyte strings. If you require replacements for a language that requires support for multibyte strings, please ask your web server administrator to <a href="http://www.php.net/manual/en/mbstring.installation.php">install mbstring</a>.', AFFILIATE_PLUGIN_DOMAIN );
+				echo '</div>';
+			}
 		}
 	}
 

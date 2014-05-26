@@ -71,6 +71,9 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 
 == Changelog ==
 
+= 1.1.2 =
+* Fixed the edit_form_after_title filter to limit it to the affiliate_keyword post type.
+
 = 1.1.1 =
 * Checking if the required Multibyte String PHP extension is enabled.
 * Translation template added.
@@ -86,6 +89,9 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 Initial release.
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+* Fixes a bug, rendering info on any post type which should only be rendered for keywords.
 
 = 1.1.1 =
 * Checking if the required Multibyte String PHP extension is enabled, translation template added.
