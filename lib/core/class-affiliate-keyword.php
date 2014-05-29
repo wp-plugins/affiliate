@@ -33,6 +33,7 @@ class Affiliate_Keyword {
 	 */
 	public static function init() {
 		add_action( 'init', array( __CLASS__, 'wp_init' ), 11 );
+		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
 		add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ), 10, 2 );
 		add_filter( 'enter_title_here', array( __CLASS__, 'enter_title_here' ), 10, 2 );
 		add_action( 'edit_form_after_title', array( __CLASS__, 'edit_form_after_title' ) );
@@ -48,6 +49,33 @@ class Affiliate_Keyword {
 	 */
 	public static function wp_init() {
 		self::post_type();
+	}
+
+	/**
+	 * Admin hooks.
+	 */
+	public static function admin_init() {
+		add_filter( 'parent_file', array( __CLASS__, 'parent_file' ) );
+	}
+
+	/**
+	 * Sets the parent menu when adding or editing a keyword. Keeps the
+	 * Affiliate menu open and marks the Keywords menu item as active.
+	 * 
+	 * @param string $parent_file
+	 * @return string
+	 */
+	public static function parent_file( $parent_file ) {
+		global $submenu_file;
+		switch ( $submenu_file ) {
+			case 'post-new.php?post_type=affiliate_keyword' :
+			case 'edit.php?post_type=affiliate_keyword' :
+				$parent_file = 'affiliate-admin';
+				// Keywords menu item marked active when adding a keyword
+				$submenu_file = 'edit.php?post_type=affiliate_keyword';
+				break;
+		}
+		return $parent_file;
 	}
 
 	/**

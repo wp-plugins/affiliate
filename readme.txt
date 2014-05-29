@@ -71,6 +71,10 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 
 == Changelog ==
 
+= 1.1.3 =
+* Improved the Affiliate menu so that the Keywords menu item is shown active
+  when adding or editing a keyword.
+
 = 1.1.2 =
 * Fixed the edit_form_after_title filter to limit it to the affiliate_keyword post type.
 
@@ -89,6 +93,9 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 Initial release.
 
 == Upgrade Notice ==
+
+= 1.1.3 =
+* Improved menu handling when editing keywords.
 
 = 1.1.2 =
 * Fixes a bug, rendering info on any post type which should only be rendered for keywords.
