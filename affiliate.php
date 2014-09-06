@@ -21,13 +21,13 @@
  * Plugin Name: Affiliate
  * Plugin URI: http://www.itthinx.com/plugins/affiliate/
  * Description: The Affiliate plugin is a toolbox for Affiliate Marketers.
- * Version: 1.1.3
+ * Version: 1.2.0
  * Author: itthinx
  * Author URI: http://www.itthinx.com
  * Donate-Link: http://www.itthinx.com
  * License: GPLv3
  */
-define( 'AFFILIATE_PLUGIN_VERSION', '1.1.3' );
+define( 'AFFILIATE_PLUGIN_VERSION', '1.2.0' );
 define( 'AFFILIATE_PLUGIN_NAME', 'affiliate' );
 define( 'AFFILIATE_PLUGIN_DOMAIN', 'affiliate' );
 define( 'AFFILIATE_PLUGIN_FILE', __FILE__ );
