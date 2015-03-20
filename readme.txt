@@ -3,7 +3,7 @@ Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/affiliate/
 Tags: ads, advertising, affiliate, affiliate marketing, affiliate plugin, affiliate tool, affiliates, amazon, auto, automatic, banner, banners, bucks, contact form, crm, earn money, e-commerce, hover, itthinx, keyword, lead, link, linker, marketing, money, online sale, order, partner, referral, referral links, referrer, shopping cart, sales, site, track, transaction, wordpress, contact form, contact form 7, digital downloads, eshop, jigoshop, magento, paypal, stripe, woocommerce, woothemes, wp e-commerce
 Requires at least: 3.5.1
-Tested up to: 4.0
+Tested up to: 4.1.1
 Stable tag: 1.2.0
 License: GPLv3
 
@@ -29,7 +29,7 @@ Additional features that are currently being developed:
 
 ### Documentation and Support ###
 
-- Please refer to the on-screen documentation first and when you still have questions, visit the [Support](http://www.itthinx.com/support/) and [Documentation](http://www.itthinx.com/documentation/affiliate/) pages.
+- Please refer to the on-screen documentation and the [Documentation](http://docs.itthinx.com/document/affiliate/) pages.
 - If you need help or want to ask a question, please leave a comment on the [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/).
 
 __Feedback__ is welcome!
@@ -40,7 +40,7 @@ Please try to solve problems there before you rate this plugin or say it doesn't
 
 == Installation ==
 
-Please also refer to the [Affiliate Documentation](http://www.itthinx.com/documentation/affiliate/) page.
+Please also refer to the [Documentation](http://docs.itthinx.com/document/affiliate/) pages.
 
 1. Upload or extract the `affiliate` folder to your site's `/wp-content/plugins/` directory. Or you could use the *Add new* option found in the *Plugins* menu in WordPress.  
 2. Enable the plugin from the *Plugins* menu in WordPress.
@@ -54,7 +54,7 @@ The plugin provides a new Affiliate menu when it is activated. Click on the menu
 
 = Where is the documentation? =
 
-Here: [Affiliate Documentation](http://www.itthinx.com/documentation/affiliate/)
+Here: [Documentation](http://docs.itthinx.com/document/affiliate/)
 
 = Where can I ask a question? =
 
@@ -70,6 +70,12 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 6. Example text with keywords automatically substituted by links.
 
 == Changelog ==
+
+= 1.3.0 =
+* Added help sections and documentation links.
+* WordPress 4.1.1 compatible.
+* Removed currently inactive Settings link in plugin links.
+* Added ABSPATH check to plugin main file.
 
 = 1.2.0 =
 * WordPress 4.0 compatible.
@@ -96,6 +102,9 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 Initial release.
 
 == Upgrade Notice ==
+
+= 1.3.0 =
+* Added some fixes, a help section and tested with WordPress 4.1.1.
 
 = 1.2.0 =
 * WordPress 4.0 compatible.

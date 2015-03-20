@@ -199,7 +199,8 @@ class Affiliate_Admin {
 		if ( current_user_can( self::ADMIN_CAPABILITY ) ) {
 			$links = array(
 				'<a href="' . get_admin_url( null, 'admin.php?page=affiliate-admin' ) . '">' . __( 'Affiliate', AFFILIATE_PLUGIN_DOMAIN ) . '</a>',
-				'<a href="' . get_admin_url( null, 'admin.php?page=affiliate-settings' ) . '">' . __( 'Settings', AFFILIATE_PLUGIN_DOMAIN ) . '</a>'
+				// @todo enable when Settings are done
+				// '<a href="' . get_admin_url( null, 'admin.php?page=affiliate-settings' ) . '">' . __( 'Settings', AFFILIATE_PLUGIN_DOMAIN ) . '</a>'
 				) + $links;
 		}
 		return $links;

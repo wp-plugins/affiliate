@@ -40,6 +40,7 @@ class Affiliate {
 			require_once AFFILIATE_CORE_LIB . '/class-affiliate-admin.php';
 			require_once AFFILIATE_CORE_LIB . '/class-affiliate-content.php';
 			require_once AFFILIATE_CORE_LIB . '/class-affiliate-keyword.php';
+			require_once AFFILIATE_CORE_LIB . '/class-affiliate-help.php';
 		} else {
 			self::$admin_messages[] =
 				'<div class="error">' .
