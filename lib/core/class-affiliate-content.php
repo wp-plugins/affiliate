@@ -62,7 +62,9 @@ class Affiliate_Content {
 	 */
 	public static function the_excerpt( $content ) {
 		if ( $post = get_post() ) {
-			$content = apply_filters( 'affiliate_post_the_excerpt', self::transform( $content, $post ), $post );
+			if ( Affiliate::post_type_enabled( $post->post_type ) ) {
+				$content = apply_filters( 'affiliate_post_the_excerpt', self::transform( $content, $post ), $post );
+			}
 		}
 		return $content;
 	}
@@ -75,7 +77,9 @@ class Affiliate_Content {
 	 */
 	public static function the_content( $content ) {
 		if ( $post = get_post() ) {
-			$content = apply_filters( 'affiliate_post_the_content', self::transform( $content, $post ), $post );
+			if ( Affiliate::post_type_enabled( $post->post_type ) ) {
+				$content = apply_filters( 'affiliate_post_the_content', self::transform( $content, $post ), $post );
+			}
 		}
 		return $content;
 	}

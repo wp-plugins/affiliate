@@ -137,10 +137,12 @@ class Affiliate_Keyword {
 	public static function create_capabilities() {
 		global $wp_roles;
 		$admin = $wp_roles->get_role( 'administrator' );
-		$caps = self::get_capabilities();
-		foreach( $caps as $key => $capability ) {
-			if ( !$admin->has_cap( $capability ) ) {
-				$admin->add_cap( $capability );
+		if ( $admin !== null ) {
+			$caps = self::get_capabilities();
+			foreach( $caps as $key => $capability ) {
+				if ( !$admin->has_cap( $capability ) ) {
+					$admin->add_cap( $capability );
+				}
 			}
 		}
 	}

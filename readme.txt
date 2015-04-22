@@ -2,8 +2,8 @@
 Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/affiliate/
 Tags: ads, advertising, affiliate, affiliate marketing, affiliate plugin, affiliate tool, affiliates, amazon, auto, automatic, banner, banners, bucks, contact form, crm, earn money, e-commerce, hover, itthinx, keyword, lead, link, linker, marketing, money, online sale, order, partner, referral, referral links, referrer, shopping cart, sales, site, track, transaction, wordpress, contact form, contact form 7, digital downloads, eshop, jigoshop, magento, paypal, stripe, woocommerce, woothemes, wp e-commerce
-Requires at least: 3.5.1
-Tested up to: 4.1.1
+Requires at least: 4.0
+Tested up to: 4.2
 Stable tag: 1.3.0
 License: GPLv3
 
@@ -71,6 +71,15 @@ Here: [Affiliate plugin page](http://www.itthinx.com/plugins/affiliate/)
 
 == Changelog ==
 
+= 1.4.0 =
+* Added the settings section to enable keyword substitution by post type.
+* Fixed administrator role is checked before assigning capabilities of the keyword custom post type.
+* Added a Settings link to the plugin entry.
+* Improved section headings.
+* Updated the translation template.
+* Corrected the path used to load translations.
+* WordPress 4.2 compatibility checked
+
 = 1.3.0 =
 * Added help sections and documentation links.
 * WordPress 4.1.1 compatible.
@@ -103,26 +112,5 @@ Initial release.
 
 == Upgrade Notice ==
 
-= 1.3.0 =
-* Added some fixes, a help section and tested with WordPress 4.1.1.
-
-= 1.2.0 =
-* WordPress 4.0 compatible.
-
-= 1.1.3 =
-* Improved menu handling when editing keywords.
-
-= 1.1.2 =
-* Fixes a bug, rendering info on any post type which should only be rendered for keywords.
-
-= 1.1.1 =
-* Checking if the required Multibyte String PHP extension is enabled, translation template added.
-
-= 1.1.0 =
-* Using a better and much more sound keyword replacement algorithm.
-
-= 1.0.1 =
-* WordPress 3.9 compatibility checked
-
-= 1.0.0 =
-Initial release, there is no need to upgrade yet.
+= 1.4.0 =
+* This release adds the option to enable keyword substitution by post type (now only enabled for Post and Page by default), fixes a potential conflict with setups that do not have the Administrator role and other minor fixes and improvements.

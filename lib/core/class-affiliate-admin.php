@@ -99,16 +99,16 @@ class Affiliate_Admin {
 // 			"edit.php?post_type=affiliate_link"
 // 		);
 
-		// @todo Settings menu item
-// 		$page = add_submenu_page(
-// 			'affiliate-admin',
-// 			__( 'Settings', AFFILIATE_PLUGIN_DOMAIN ),
-// 			__( 'Settings', AFFILIATE_PLUGIN_DOMAIN ),
-// 			self::ADMIN_CAPABILITY,
-// 			'affiliate-settings',
-// 			array( __CLASS__, 'affiliate_settings_section' )
-// 		);
-// 		add_action( 'admin_print_styles-' . $page, array( __CLASS__, 'admin_print_styles' ) );
+		// Settings menu item
+		$page = add_submenu_page(
+			'affiliate-admin',
+			__( 'Settings', AFFILIATE_PLUGIN_DOMAIN ),
+			__( 'Settings', AFFILIATE_PLUGIN_DOMAIN ),
+			self::ADMIN_CAPABILITY,
+			'affiliate-settings',
+			array( __CLASS__, 'affiliate_settings_section' )
+		);
+		add_action( 'admin_print_styles-' . $page, array( __CLASS__, 'admin_print_styles' ) );
 	}
 
 	/**
@@ -122,18 +122,28 @@ class Affiliate_Admin {
 
 		$output = '';
 
-		$output .= '<h2>';
-		$output .= __( 'Affiliate', AFFILIATE_PLUGIN_DOMAIN );
-		$output .= '</h2>';
-
 		$output .= '<div class="affiliate-admin">';
 
-		$output .= '<h3>';
+		$output .= '<h1>';
+		$output .= __( 'Affiliate', AFFILIATE_PLUGIN_DOMAIN );
+		$output .= '</h1>';
+
+		$output .= '<h2>';
 		$output .= __( 'Keywords', AFFILIATE_PLUGIN_DOMAIN );
-		$output .= '</h3>';
+		$output .= '</h2>';
 
 		$output .= '<p>';
 		$output .= __( 'Keywords can be substituted with links automatically anywhere they appear in the content of the site.', AFFILIATE_PLUGIN_DOMAIN );
+		$output .= '</p>';
+		$output .= '<p>';
+		$output .= sprintf(
+			__( 'Keywords are substituted only on post types enabled in the %s.', AFFILIATE_PLUGIN_DOMAIN ),
+			sprintf(
+				'<a href="%s">%s</a>',
+				esc_attr( get_admin_url( null, 'admin.php?page=affiliate-settings' ) ),
+				esc_html( __( 'Settings', AFFILIATE_PLUGIN_DOMAIN ) )
+			)
+		);
 		$output .= '</p>';
 
 		$output .= '<p>';
@@ -176,16 +186,64 @@ class Affiliate_Admin {
 	 * Settings screen.
 	 */
 	public static function affiliate_settings_section() {
+
 		if ( !current_user_can( self::ADMIN_CAPABILITY ) ) {
 			wp_die( __( 'Access denied.', AFFILIATE_PLUGIN_DOMAIN ) );
 		}
+
+		// handle save
+		if ( isset( $_POST['submit'] ) ) {
+			if ( wp_verify_nonce( $_POST['affiliate-settings'], 'save' ) ) {
+				$post_types_option = Affiliate::get_post_types();
+				$post_types = get_post_types( array( 'public' => true ) );
+				$selected_post_types = is_array( $_POST['post-type'] ) ? $_POST['post-type'] : array();
+				foreach( $post_types as $post_type ) {
+					$post_types_option[$post_type] = in_array( $post_type, $selected_post_types );
+				}
+				Affiliate::set_post_types( $post_types_option );
+			}
+		}
+
+		// build settings
 		$output = '';
-		$output .= '<h2>';
-		$output .= __( 'Settings', AFFILIATE_PLUGIN_DOMAIN );
-		$output .= '</h2>';
 		$output .= '<div class="affiliate-settings">';
-		// @todo
+		$output .= '<h1>';
+		$output .= __( 'Settings', AFFILIATE_PLUGIN_DOMAIN );
+		$output .= '</h1>';
+		$output .= '<form action="" name="options" method="post">';
+		$output .= '<div>';
+		$output .= '<h2>' . __( 'Post Types', AFFILIATE_PLUGIN_DOMAIN ) . '</h2>';
+		$output .= '<p class="description">' .  __( 'Enable keyword substitution for these post types.', AFFILIATE_PLUGIN_DOMAIN ) . '</p>';
+		$post_types_option = Affiliate::get_post_types();
+		$post_types = get_post_types( array( 'public' => true ) );
+		$output .= '<ul>';
+		foreach( $post_types as $post_type ) {
+			$post_type_object = get_post_type_object( $post_type );
+			$output .= '<li>';
+			$output .= '<label>';
+			$label = $post_type;
+			$labels = isset( $post_type_object->labels ) ? $post_type_object->labels : null;
+			if ( ( $labels !== null ) && isset( $labels->singular_name ) ) {
+				$label = __( $labels->singular_name );
+			}
+			$checked = ( isset( $post_types_option[$post_type] ) && $post_types_option[$post_type] ) ? ' checked="checked" ' : '';
+			$output .= '<input name="post-type[]" type="checkbox" value="' . esc_attr( $post_type ) . '" ' . $checked . '/>';
+			$output .= $label;
+			$output .= '</label>';
+			$output .= '</li>';
+		}
+		$output .= '<ul>';
+		$output .= '<p class="description">';
+		$output .= __( 'Keywords are substituted with affiliate links on enabled post types only.', AFFILIATE_PLUGIN_DOMAIN );
+		$output .= '</p>';
+
+		$output .= wp_nonce_field( 'save', 'affiliate-settings', true, false );
+		$output .= sprintf( '<input class="button button-primary" type="submit" name="submit" value="%s"/>',  esc_attr( __( 'Save', AFFILIATE_PLUGIN_DOMAIN ) ) );
 		$output .= '</div>';
+		$output .= '</form>';
+		$output .= '</div>';
+
+		// render settings
 		echo $output;
 	}
 
@@ -199,9 +257,8 @@ class Affiliate_Admin {
 		if ( current_user_can( self::ADMIN_CAPABILITY ) ) {
 			$links = array(
 				'<a href="' . get_admin_url( null, 'admin.php?page=affiliate-admin' ) . '">' . __( 'Affiliate', AFFILIATE_PLUGIN_DOMAIN ) . '</a>',
-				// @todo enable when Settings are done
-				// '<a href="' . get_admin_url( null, 'admin.php?page=affiliate-settings' ) . '">' . __( 'Settings', AFFILIATE_PLUGIN_DOMAIN ) . '</a>'
-				) + $links;
+				'<a href="' . get_admin_url( null, 'admin.php?page=affiliate-settings' ) . '">' . __( 'Settings', AFFILIATE_PLUGIN_DOMAIN ) . '</a>'
+			) + $links;
 		}
 		return $links;
 	}

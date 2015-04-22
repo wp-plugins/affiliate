@@ -35,7 +35,7 @@ class Affiliate {
 	 */
 	public static function boot() {
 		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
-		load_plugin_textdomain( AFFILIATE_PLUGIN_DOMAIN, null, AFFILIATE_PLUGIN_NAME . '/lib/core/languages' );
+		load_plugin_textdomain( AFFILIATE_PLUGIN_DOMAIN, null, AFFILIATE_PLUGIN_NAME . '/languages' );
 		if ( function_exists( 'mb_strlen' ) ) {
 			require_once AFFILIATE_CORE_LIB . '/class-affiliate-admin.php';
 			require_once AFFILIATE_CORE_LIB . '/class-affiliate-content.php';
@@ -61,5 +61,44 @@ class Affiliate {
 			}
 		}
 	}
+
+	/**
+	 * Returns the post types that we should handle.
+	 * 
+	 * @access private
+	 */
+	public static function get_post_types() {
+		$post_types = get_option( 'affiliate-post-types', null );
+		if ( $post_types === null ) {
+			add_option( 'affiliate-post-types', array( 'post' => true, 'page' => true ), '', 'no' );
+			$post_types = get_option( 'affiliate-post-types', array( 'post' => true, 'page' => true ) );
+		}
+		return $post_types;
+	}
+
+	/**
+	 * Determines the post types we should handle.
+	 * 
+	 * @access private
+	 * 
+	 * @param array $post_types maps string (post type) => boolean
+	 */
+	public static function set_post_types( $post_types ) {
+		update_option( 'affiliate-post-types', $post_types );
+	}
+
+	/**
+	 * Whether keyword substitution for the post type is enabled.
+	 * 
+	 * @access private
+	 * 
+	 * @param string $post_type
+	 * @return boolean
+	 */
+	public static function post_type_enabled( $post_type ) {
+		$post_types = self::get_post_types();
+		return isset( $post_types[$post_type] ) && $post_types[$post_type];
+	}
+
 }
 Affiliate::boot();
